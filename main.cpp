@@ -2,8 +2,18 @@
 #include <stdexept>
 
 int ** makeMtx(int ** mtx, size_t  m, size_t n);
+
 int ** transpose(int ** mtx, size_t m, size_t n);
-void rmMtx(int ** mtx, size_t m);
+
+void rmMtx(int ** mtx, size_t m)
+{
+  for (size_t i = 0; i < m; ++i)
+  {
+    delete [] mtx[i];
+  }
+  delete [] mtx;
+}
+
 void printMtx(int ** mtx, size_t m, size_t n)
 {
   std::cout << mtx[0][0];
