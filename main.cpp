@@ -25,17 +25,17 @@ int main()
   if (std::cin.fail())
   {
     rmMtx(mtx, m);
-    return 1
+    return 1;
   }
 
-  transpose(mtx)
+  transpose(mtx, m, n);
 
   for (size_t i = 0; i < m * n; ++i)
     {
-      std::cout << mtx[i / n][i % n] = 0;
+      std::cout << mtx[i / n][i % n] << "\n";
     }
 
-  reMtx(mtx, m)
+  rmMtx(mtx, m);
 }
 
 
