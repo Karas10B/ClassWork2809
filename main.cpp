@@ -1,7 +1,24 @@
 #include <iostream>
 #include <stdexept>
 
-int ** makeMtx(int ** mtx, size_t  m, size_t n);
+int ** makeMtx(size_t  m, size_t n);
+{
+  int ** mtxR = new int * [m];
+  
+  try
+  {
+    for (size_t i = 0; i < m; ++i)
+    {
+      mtxR[i] = new int [n];
+    }
+  }
+  
+  catch (const bad_alloc() & e)
+  {
+    rmMtx(mtxR, m);
+    throw;
+  }
+}
 
 int ** transpose(int ** mtx, size_t m, size_t n);
 
@@ -43,7 +60,7 @@ int main()
   }
   
   int ** mtx = nullptr;
-  mtx = makeMtx(mtx, m, n);
+  mtx = makeMtx(m, n);
   
   for (size_t i = 0; i < m * n; ++i)
   {
