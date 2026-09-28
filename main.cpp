@@ -1,7 +1,15 @@
 #include <iostream>
-#include <stdexept>
 
-int ** makeMtx(size_t  m, size_t n);
+void rmMtx(int ** mtx, size_t m)
+{
+  for (size_t i = 0; i < m; ++i)
+  {
+    delete [] mtx[i];
+  }
+  delete [] mtx;
+}
+
+int ** makeMtx(size_t  m, size_t n)
 {
   int ** mtxR = new int * [m];
   
@@ -13,35 +21,28 @@ int ** makeMtx(size_t  m, size_t n);
     }
   }
   
-  catch (const bad_alloc() & e)
+  catch (const std::bad_alloc & e)
   {
     rmMtx(mtxR, m);
     throw;
   }
+
+  return mtxR;
 }
 
-int ** transpose(int ** mtx, size_t m, size_t n);
-
-void rmMtx(int ** mtx, size_t m)
-{
-  for (size_t i = 0; i < m; ++i)
-  {
-    delete [] mtx[i];
-  }
-  delete [] mtx;
-}
+//int ** transpose(int ** mtx, size_t m, size_t n);
 
 void printMtx(int ** mtx, size_t m, size_t n)
 {
-  std::cout << mtx[0][0];
+//  std::cout << mtx[0][0];
   for (size_t i = 0; i < m; ++i)
   {
     std::cout << ' ' << mtx[0][i];
   }
 
-  for (size_t i = 0; i < n; ++i)
+  for (size_t i = 1; i < n; ++i)
   {
-    std::cout << "\n" << mts[i][0];
+    std::cout << "\n";// << mtx[i][0];
     for (size_t j = 0; j < m; ++j)
     {
       std::cout << ' ' << mtx[i][j];
@@ -73,7 +74,7 @@ int main()
     return 1;
   }
   
-  transpose(mtx, m, n);
+//  transpose(mtx, m, n);
   
   printMtx(mtx, m, n);
   std::cout << "\n";
