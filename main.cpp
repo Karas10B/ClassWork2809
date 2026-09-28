@@ -1,9 +1,8 @@
 #include <iostream>
 
-int ** makeMtx(mtx, m, n)
-{
-  
-}
+int ** makeMtx(int ** mtx, size_t  m, size_t n);
+int ** transpose(int ** mtx, size_t m, size_t n);
+void rmMtx(int ** mtx, size_t m);
 
 int main()
 {
@@ -20,6 +19,25 @@ int main()
 
   for (size_t i = 0; i < m * n; ++i)
   {
-    mtx[i / n][i % n] = 0;
+    std::cin >> mtx[i / n][i % n];
   }
+
+  if (std::cin.fail())
+  {
+    rmMtx(mtx, m);
+    return 1
+  }
+
+  transpose(mtx)
+
+  for (size_t i = 0; i < m * n; ++i)
+    {
+      std::cout << mtx[i / n][i % n] = 0;
+    }
+
+  reMtx(mtx, m)
 }
+
+
+
+//message: main imp
