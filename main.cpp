@@ -37,7 +37,7 @@ int ** transpose(int ** mtx, size_t m, size_t n)
   {
     for (size_t j = 0; j < n; ++j)
     {
-      mtxT[i][j] = mtx[j][i]
+      mtxT[i][j] = mtx[j][i];
     }
   }
   
@@ -89,13 +89,14 @@ int main()
   printMtx(mtx, m, n);
   std::cout << "\n";
   
+  int ** mtxT = nullptr;
   mtxT = transpose(mtx, m, n);
   std::cout << "-----\n";
   printMtx(mtxT, n, m);
   std::cout << "\n";
   
   rmMtx(mtx, m);
-  rmMtx(mtxT, n)
+  rmMtx(mtxT, n);
 }
 
 //message: main imp
