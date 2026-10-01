@@ -71,34 +71,43 @@ int main()
   {
     return 1;
   }
-  
+
   int ** mtx = nullptr;
-  mtx = makeMtx(m, n);
-  
-  for (size_t i = 0; i < m * n; ++i)
+
+  try
   {
-    std::cin >> mtx[i / m][i % m];
-  }
-  
-  if (std::cin.fail())
-  {
+    mtx = makeMtx(m, n);
+    
+    for (size_t i = 0; i < m * n; ++i)
+    {
+      std::cin >> mtx[i / m][i % m];
+    }
+    
+    if (std::cin.fail())
+    {
+      rmMtx(mtx, m);
+      return 1;
+    }
+    
+    printMtx(mtx, m, n);
+    std::cout << "\n";
+    
+    int ** mtxT = nullptr;
+    mtxT = transpose(mtx, m, n);
+    std::cout << "-----\n";
+    printMtx(mtxT, n, m);
+    std::cout << "\n";
+    
     rmMtx(mtx, m);
-    return 1;
+    rmMtx(mtxT, n);
   }
-  
-  printMtx(mtx, m, n);
-  std::cout << "\n";
-  
-  int ** mtxT = nullptr;
-  mtxT = transpose(mtx, m, n);
-  std::cout << "-----\n";
-  printMtx(mtxT, n, m);
-  std::cout << "\n";
-  
-  rmMtx(mtx, m);
-  rmMtx(mtxT, n);
+  catch(const std::bad_alloc& e)
+  {
+    if (mtx != nullptr)
+    {
+      rmMtx(mtx, m);
+    }
+    std::cerr << "Memory error" << e.what() << "\n";
+    return 2;
+  }
 }
-
-//message: main imp
-//message: help me
-
